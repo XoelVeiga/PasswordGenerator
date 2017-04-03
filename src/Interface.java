@@ -14,11 +14,13 @@ import javax.swing.JSpinner;
 import javax.swing.JLabel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Interface {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField textPassOutput;
 	private JTextField txtRoute;
 	private JTextField txtName;
 	private JTextField textField_1;
@@ -139,14 +141,14 @@ public class Interface {
 		gbc_lblPassword.gridy = 0;
 		pnlLenght.add(lblPassword, gbc_lblPassword);
 		
-		JSpinner spinnerLenght = new JSpinner();
-		spinnerLenght.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		GridBagConstraints gbc_spinnerLenght = new GridBagConstraints();
-		gbc_spinnerLenght.insets = new Insets(0, 0, 0, 5);
-		gbc_spinnerLenght.fill = GridBagConstraints.HORIZONTAL;
-		gbc_spinnerLenght.gridx = 3;
-		gbc_spinnerLenght.gridy = 0;
-		pnlLenght.add(spinnerLenght, gbc_spinnerLenght);
+		JSpinner spinnerLength = new JSpinner();
+		spinnerLength.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		GridBagConstraints gbc_spinnerLength = new GridBagConstraints();
+		gbc_spinnerLength.insets = new Insets(0, 0, 0, 5);
+		gbc_spinnerLength.fill = GridBagConstraints.HORIZONTAL;
+		gbc_spinnerLength.gridx = 3;
+		gbc_spinnerLength.gridy = 0;
+		pnlLenght.add(spinnerLength, gbc_spinnerLength);
 		
 		JPanel pnlPage = new JPanel();
 		GridBagConstraints gbc_pnlPage = new GridBagConstraints();
@@ -285,16 +287,32 @@ public class Interface {
 		gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.insets = new Insets(0, 0, 0, 5);
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 0;
-		panel.add(textField, gbc_textField);
-		textField.setColumns(10);
+		textPassOutput = new JTextField();
+		GridBagConstraints gbc_textPassOutput = new GridBagConstraints();
+		gbc_textPassOutput.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textPassOutput.insets = new Insets(0, 0, 0, 5);
+		gbc_textPassOutput.gridx = 1;
+		gbc_textPassOutput.gridy = 0;
+		panel.add(textPassOutput, gbc_textPassOutput);
+		textPassOutput.setColumns(10);
 		
 		JButton btnGeneratePassword = new JButton("Generate Password");
+		btnGeneratePassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//This happens when you click on the "generate password" button.
+				//String lng is just to get the text from the spinner.
+				String lng = spinnerLength.getValue().toString();
+				//Integer length is the text got with lng parsed into a integer.
+				int length = Integer.parseInt(lng);
+				boolean lowercase = chckbxMayus.isSelected();
+				boolean uppercase = chckbxMayus.isSelected();
+				boolean num = chckbxNumbers.isSelected();
+				boolean symbol = chckbxSpecialCharacters.isSelected();
+				String finalPassword = Principal.generatePassword(lowercase, uppercase, num, symbol, length);
+				textPassOutput.setText(finalPassword);
+			}
+		});
 		GridBagConstraints gbc_btnGeneratePassword = new GridBagConstraints();
 		gbc_btnGeneratePassword.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnGeneratePassword.gridx = 2;
