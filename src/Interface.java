@@ -92,20 +92,20 @@ public class Interface {
 		gbc_lblSelect.gridy = 1;
 		pnlCharOpts.add(lblSelect, gbc_lblSelect);
 		
-		JCheckBox chckbxMinus = new JCheckBox("Minus");
-		chckbxMinus.setSelected(true);
-		GridBagConstraints gbc_chckbxMinus = new GridBagConstraints();
-		gbc_chckbxMinus.insets = new Insets(0, 0, 0, 5);
-		gbc_chckbxMinus.gridx = 1;
-		gbc_chckbxMinus.gridy = 1;
-		pnlCharOpts.add(chckbxMinus, gbc_chckbxMinus);
+		JCheckBox chckbxLower = new JCheckBox("Lower");
+		chckbxLower.setSelected(true);
+		GridBagConstraints gbc_chckbxLower = new GridBagConstraints();
+		gbc_chckbxLower.insets = new Insets(0, 0, 0, 5);
+		gbc_chckbxLower.gridx = 1;
+		gbc_chckbxLower.gridy = 1;
+		pnlCharOpts.add(chckbxLower, gbc_chckbxLower);
 		
-		JCheckBox chckbxMayus = new JCheckBox("Mayus");
-		GridBagConstraints gbc_chckbxMayus = new GridBagConstraints();
-		gbc_chckbxMayus.insets = new Insets(0, 0, 0, 5);
-		gbc_chckbxMayus.gridx = 2;
-		gbc_chckbxMayus.gridy = 1;
-		pnlCharOpts.add(chckbxMayus, gbc_chckbxMayus);
+		JCheckBox chckbxCaps = new JCheckBox("Caps");
+		GridBagConstraints gbc_chckbxCaps = new GridBagConstraints();
+		gbc_chckbxCaps.insets = new Insets(0, 0, 0, 5);
+		gbc_chckbxCaps.gridx = 2;
+		gbc_chckbxCaps.gridy = 1;
+		pnlCharOpts.add(chckbxCaps, gbc_chckbxCaps);
 		
 		JCheckBox chckbxNumbers = new JCheckBox("Nums");
 		GridBagConstraints gbc_chckbxNumbers = new GridBagConstraints();
