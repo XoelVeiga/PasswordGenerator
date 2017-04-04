@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public class Interface {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textPassOutput;
 	private JTextField txtRoute;
 	private JTextField txtName;

@@ -1,3 +1,4 @@
+import java.awt.EventQueue;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -6,8 +7,17 @@ import java.io.IOException;
 public class Principal {
 
 	public static void main(String[] args) throws IOException {
-		// System.out.println(generatePassword(true, true, false, true, 13));
-		generateTxt("caldo de pollo", "facebook", null, "bob");
+		Interface a = new Interface();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Interface window = new Interface();
+					a.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 	}
 
@@ -66,13 +76,13 @@ public class Principal {
 		if (name == null || name=="") {
 			name1 = "Password";
 		}
-		String route1 = route;//Setting route (default "C:/name.txt")
-		if (route1 == null || route1=="C:/PasswordGenerator" || route1=="") {
+		String route1 = route;//Setting route (default "C:/PasswordGenerator/Password.txt")
+		if (route1 == null || route1.equals("C:/PasswordGenerator") || route1=="" || route1==" ") {
 			File folder = new File("C:\\PasswordGenerator");
 			folder.mkdir();
 			route1 = "C:/PasswordGenerator" + "/" + name1 + ".txt";
 		} else {
-			route1 = route1 + "/" + name1 + ".txt";
+			route1 = route1 + "/"+ name1 + ".txt";
 		}
 		File Txt = new File(route1);
 
@@ -85,14 +95,14 @@ public class Principal {
 				System.out.println("Error E/S: " + e);
 			}
 		} else {//else create and set pass and location
-			BufferedWriter bw;
-			bw = new BufferedWriter(new FileWriter(Txt));
+			FileWriter fw = new FileWriter(route1);
 			if (location==null || location==""){
-				bw.write(pass);
+				fw.write(pass);
+				
 			}else{
-			bw.write(location + " --> " + pass);
+				fw.write( location + " --> " + pass);
 			}
-			bw.close();
+			fw.close();
 		}
 
 	}
