@@ -197,7 +197,6 @@ public class Interface {
 		pnlAdvanced.add(lblSelectIfYou, gbc_lblSelectIfYou);
 		
 		JCheckBox checkBoxDoc = new JCheckBox("");
-		checkBoxDoc.setSelected(true);
 		GridBagConstraints gbc_checkBoxDoc = new GridBagConstraints();
 		gbc_checkBoxDoc.insets = new Insets(0, 0, 5, 5);
 		gbc_checkBoxDoc.gridx = 4;
@@ -212,7 +211,7 @@ public class Interface {
 		pnlAdvanced.add(lblIfItIs, gbc_lblIfItIs);
 		
 		txtRoute = new JTextField();
-		txtRoute.setText("C:");
+		txtRoute.setText("C:/PasswordGenerator");
 		GridBagConstraints gbc_txtRoute = new GridBagConstraints();
 		gbc_txtRoute.insets = new Insets(0, 0, 5, 5);
 		gbc_txtRoute.fill = GridBagConstraints.HORIZONTAL;
@@ -305,8 +304,8 @@ public class Interface {
 				String lng = spinnerLength.getValue().toString();
 				//Integer length is the text got with lng parsed into a integer.
 				int length = Integer.parseInt(lng);
-				boolean lowercase = chckbxMayus.isSelected();
-				boolean uppercase = chckbxMayus.isSelected();
+				boolean lowercase = chckbxLower.isSelected();
+				boolean uppercase = chckbxCaps.isSelected();
 				boolean num = chckbxNumbers.isSelected();
 				boolean symbol = chckbxSpecialCharacters.isSelected();
 				String finalPassword = Principal.generatePassword(lowercase, uppercase, num, symbol, length);

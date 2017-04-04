@@ -5,8 +5,9 @@ import java.io.IOException;
 
 public class Principal {
 
-	public static void main(String[] args) {
-		System.out.println(generatePassword(true, true, false, true, 13));
+	public static void main(String[] args) throws IOException {
+		// System.out.println(generatePassword(true, true, false, true, 13));
+		generateTxt("caldo de pollo", "facebook", null, "bob");
 	}
 
 	public static StringBuilder generatePassword(boolean lowercase, boolean uppercase, boolean num, boolean symbol,
@@ -60,33 +61,35 @@ public class Principal {
 		return password;
 	}
 
-	public static void generateTxt(String pass, String location, String route,String name) throws IOException{
-		String name1=name;
-		if(name==null){
-			name1="Password";
+	public static void generateTxt(String pass, String location, String route, String name) throws IOException {
+		String name1 = name;//Setting name of password (default "Password")
+		if (name == null) {
+			name1 = "Password";
 		}
-		String route1=route;
-		if (route1==null){
-        route1 ="C:/"+name1+".txt";
-		}else{
-//TODO method to change \ into /
+		String route1 = route;//Setting route (default "C:/name.txt")
+		if (route1 == null) {
+			File folder = new File("C:\\PasswordGenerator");
+			folder.mkdir();
+			route1 = "C:/PasswordGenerator" + "/" + name1 + ".txt";
+		} else {
+			route1 = route1 + "/" + name1 + ".txt";
 		}
-        File Txt = new File(route1);
-       
-        if(Txt.exists()) {
-        	try{
-                FileWriter fw=new FileWriter(route1,true);
-                fw.write("		"+location+" --> "+pass+"		");
-                fw.close();
-            }catch(IOException e){
-                System.out.println("Error E/S: "+e);
-            }
-        } else {
-        	 BufferedWriter bw;
-            bw = new BufferedWriter(new FileWriter(Txt));
-            bw.write(location+" --> "+pass+"		");
-            bw.close();
-        }
-       
+		File Txt = new File(route1);
+
+		if (Txt.exists()) {//If doc exists just overwrite it
+			try {
+				FileWriter fw = new FileWriter(route1, true);
+				fw.write("    ||    " + location + " --> " + pass);
+				fw.close();
+			} catch (IOException e) {
+				System.out.println("Error E/S: " + e);
+			}
+		} else {//else create and set pass and location
+			BufferedWriter bw;
+			bw = new BufferedWriter(new FileWriter(Txt));
+			bw.write(location + " --> " + pass + "		");
+			bw.close();
+		}
+
 	}
 }
