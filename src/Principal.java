@@ -4,13 +4,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Principal {
-
 	public static void main(String[] args) {
 		System.out.println(generatePassword(true, true, false, true, 13));
 	}
 
-	public static StringBuilder generatePassword(boolean lowercase, boolean uppercase, boolean num, boolean symbol,
-			int length) {
+	public static String generatePassword(boolean lowercase, boolean uppercase, boolean num, boolean symbol, int length) {
 		/*
 		 * This method will create the random password. Depending on the
 		 * parameters defined by the user it will work in different ways.
@@ -45,7 +43,7 @@ public class Principal {
 			if (num) {
 				if ((randomchar >= 48) && (randomchar <= 57)) {
 					password.append((char) randomchar);
-					counter++;
+ 					counter++;
 				}
 			}
 
@@ -57,7 +55,7 @@ public class Principal {
 			}
 
 		}
-		return password;
+		return password.toString();
 	}
 
 	public static void generateTxt(String pass, String location, String route,String name) throws IOException{
