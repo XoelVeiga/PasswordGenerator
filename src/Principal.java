@@ -1,7 +1,7 @@
 
 public class Principal {
 
-	public static StringBuilder generatePassword(boolean lowercase, boolean uppercase, boolean num, boolean symbol,
+	public static String generatePassword(boolean lowercase, boolean uppercase, boolean num, boolean symbol,
 			int length) {
 		/*
 		 * This method will create the random password. Depending on the
@@ -49,7 +49,7 @@ public class Principal {
 			}
 
 		}
-		return password;
+		return password.toString();
 	}
 
 	public static void main(String[] args) {
