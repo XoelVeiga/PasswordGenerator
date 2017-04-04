@@ -4,15 +4,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Principal {
-<<<<<<< HEAD
 
 	public static void main(String[] args) throws IOException {
 		// System.out.println(generatePassword(true, true, false, true, 13));
 		generateTxt("caldo de pollo", "facebook", null, "bob");
-=======
-	public static void main(String[] args) {
-		System.out.println(generatePassword(true, true, false, true, 13));
->>>>>>> origin/master
+
 	}
 
 	public static String generatePassword(boolean lowercase, boolean uppercase, boolean num, boolean symbol, int length) {
@@ -67,11 +63,11 @@ public class Principal {
 
 	public static void generateTxt(String pass, String location, String route, String name) throws IOException {
 		String name1 = name;//Setting name of password (default "Password")
-		if (name == null) {
+		if (name == null || name=="") {
 			name1 = "Password";
 		}
 		String route1 = route;//Setting route (default "C:/name.txt")
-		if (route1 == null) {
+		if (route1 == null || route1=="C:/PasswordGenerator" || route1=="") {
 			File folder = new File("C:\\PasswordGenerator");
 			folder.mkdir();
 			route1 = "C:/PasswordGenerator" + "/" + name1 + ".txt";
@@ -91,7 +87,11 @@ public class Principal {
 		} else {//else create and set pass and location
 			BufferedWriter bw;
 			bw = new BufferedWriter(new FileWriter(Txt));
-			bw.write(location + " --> " + pass + "		");
+			if (location==null || location==""){
+				bw.write(pass);
+			}else{
+			bw.write(location + " --> " + pass);
+			}
 			bw.close();
 		}
 
